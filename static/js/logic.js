@@ -13,20 +13,20 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 var occupiedIcon = L.icon({
-    iconUrl: 'occupied.svg',
+    iconUrl: 'icons/occupied.svg',
     iconSize:     [30, 30], // size of the icon
     iconAnchor:   [22, 22], // point of the icon which will correspond to marker's location
     popupAnchor:  [-7, -26] // point from which the popup should open relative to the iconAnchor
 });
 var vacantIcon = L.icon({
-    iconUrl: 'atmospheric.svg',
+    iconUrl: 'icons/atmospheric.svg',
     iconSize:     [30, 30],
     iconAnchor:   [22, 22],
     popupAnchor:  [-7, -26]
 });
 
 // Grab the data with d3
-d3.json('../../joined.json', function(response) {
+d3.json('../../data/joined.json', function(response) {
 
   // Create a new marker cluster group
   var markers = L.markerClusterGroup(

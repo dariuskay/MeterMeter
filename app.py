@@ -1,19 +1,16 @@
-from flask import Flask, render_template
-from flask_pymongo import PyMongo
+import os
 
+from flask import Flask
 
-
+from callAPI import convert_to_json
 
 app = Flask(__name__)
 
-
-
-
-
-import pandas as pd
-import datetime as dt
-
-
+@app.route("/")
+def index():
+    """Return the homepage."""
+    convert_to_json()
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
