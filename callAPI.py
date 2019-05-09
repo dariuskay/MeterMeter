@@ -26,7 +26,7 @@ def convert_to_json():
        'LA Specific Plans', 'Council Districts',
        'Neighborhood Councils (Certified)'],inplace=True, axis=1)
 
-	merged.to_json('data/joined.json', orient='records')
+	merged.to_json('joined.json', orient='records')
 
 if __name__ == "__main__":
     convert_to_json()

@@ -26,7 +26,7 @@ var vacantIcon = L.icon({
 });
 
 // Grab the data with d3
-d3.json('../../data/joined.json', function(response) {
+d3.json('../../joined.json', function(response) {
 
   // Create a new marker cluster group
   var markers = L.markerClusterGroup(
