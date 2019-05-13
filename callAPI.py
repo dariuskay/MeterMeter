@@ -9,7 +9,7 @@ client = Socrata("data.lacity.org", None)
 results = client.get("e7h6-4a3e", limit=6000)
 
 def convert_to_json():
-
+	
 	client = Socrata("data.lacity.org", None)
 
 	results = client.get("e7h6-4a3e", limit=6000)
@@ -26,7 +26,7 @@ def convert_to_json():
        'LA Specific Plans', 'Council Districts',
        'Neighborhood Councils (Certified)'],inplace=True, axis=1)
 
-	merged.to_json('joined.json', orient='records')
+	return merged.to_dict(orient='records')
 
 if __name__ == "__main__":
     convert_to_json()
