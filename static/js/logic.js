@@ -64,8 +64,13 @@ d3.json('/data', function(response) {
             latitude = array[0].trim().replace('(', ""),
             longitude = array[1].trim().replace(')', "");
 
+        var appleURL = `http://maps.apple.com/?q=${latitude},${longitude}`
+
         var new_marker = L.marker([latitude, longitude], { icon: (response[i].occupancystate == "OCCUPIED" ? occupiedIcon : vacantIcon) })
-            .bindPopup(`${response[i].BlockFace} <br> ${response[i].ParkingPolicy} <br> ${response[i].RateRange}`)
+            .bindPopup(`${response[i].BlockFace} <br> 
+                ${response[i].ParkingPolicy} <br> 
+                ${response[i].RateRange} <br>
+                <a href="${appleURL}" target="_blank">Open in Maps</a>`)
 
         new_marker.lat = latitude;
         new_marker.lon = longitude;
