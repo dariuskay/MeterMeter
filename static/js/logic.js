@@ -1,13 +1,13 @@
 // Creating map object centered on Downtown
 var myMap = L.map("map", {
-    center: [34.05129606451308, -118.25138691378726],
+    center: [34.05129606451308, -118.35138691378726],
     zoom: 12
 });
 
 // Adding tile layer to the map
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
+    maxZoom: 20,
     id: "mapbox.streets",
     accessToken: API_KEY
 }).addTo(myMap);
@@ -31,27 +31,7 @@ var customOptions = {
     'className': 'popupCustom'
 };
 
-// function chooseMarker(d) {
-//     if d.occupancystate === "OCCUPIED" {
-//         return L.marker({
-//     'maxWidth': '400',
-//     'width': '200',
-//     'className' : 'popupCustom'
-//     }, [latitude, longitude], { icon: occupiedIcon : vacantIcon })
-//             .bindPopup(`<b>Address:</b> ${response[i].BlockFace} <br> 
-//                 <b>Policy:</b> ${response[i].ParkingPolicy} <br> 
-//                 <b>Rate:</b> ${response[i].RateRange} <br>
-//                 <a href="${appleURL}" target="_blank"><b>Open in Maps</b></a>`)
-//     } else {
-//         return L.marker([latitude, longitude], { icon: occupiedIcon : occupiedIcon })
-//             .bindPopup(`<b>Address:</b> ${response[i].BlockFace} <br> 
-//                 <b>Policy:</b> ${response[i].ParkingPolicy} <br> 
-//                 <b>Rate:</b> ${response[i].RateRange} <br>
-//                 <a href="${appleURL}" target="_blank"><b>Open in Maps</b></a>`)
-//     }
-// }
 
-// Grab the data with d3
 d3.json('/data', function(response) {
 
     // Create a new marker cluster group
@@ -75,13 +55,6 @@ d3.json('/data', function(response) {
         { disableClusteringAtZoom: 18 }
     );
 
-    // var clicked = function(e) {
-    //   console.log(this.lat);
-    //   console.log(this.lon);
-    //   console.log(e.latlng);
-    // }
-
-    // Loop through data
     for (var i = 0; i < response.length; i++) {
 
         var array = response[i].LatLng.split(','),
@@ -120,3 +93,31 @@ d3.json('/data', function(response) {
     myMap.addLayer(markers);
 
 })
+
+var home = document.getElementById('navbar-brand');
+var downtown = document.getElementById('dt');
+var hollywood = document.getElementById('hw');
+var westwood = document.getElementById('ww');
+var venice = document.getElementById('vb');
+
+downtown.addEventListener('click', function(event) {
+    myMap.flyTo([34.05129606451308, -118.25138691378726],15)
+});
+
+hollywood.addEventListener('click', function(event) {
+
+    myMap.flyTo([34.099, -118.336],16)
+});
+
+westwood.addEventListener('click', function(event) {
+
+    myMap.flyTo([34.061541, -118.440521],
+        16)
+});
+venice.addEventListener('click', function(event) {
+
+    myMap.flyTo([33.986778, -118.472992],17)
+});
+home.addEventListener('click', function(event) {
+    myMap.flyTo([34.05129606451308, -118.35138691378726],12)
+});

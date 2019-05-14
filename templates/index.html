@@ -6,13 +6,11 @@
     <title>MeterMeter</title>
     <!-- Boostrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/static/icons/favicon.ico">
     <!-- Leaflet JS & CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
-
     <!-- For mobile sizing -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- d3 JS -->
@@ -26,6 +24,37 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="/static/icons/favicon-180.png" width="30" height="30" alt="">
+            MeterMeter
+        </a>
+        <form class="form-inline">
+            <button type="button" class="btn btn-outline-primary" id='dt'>Downtown</button>
+            <button type="button" class="btn btn-outline-primary" id='hw'>Hollywood</button>
+            <button type="button" class="btn btn-outline-primary" id='ww'>Westwood</button>
+            <button type="button" class="btn btn-outline-primary" id='vb'>Venice</button>
+        </form>
+        <!-- Navbar content -->
+    </nav>
+    <!--     <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    I want to park in...
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" id='downtown' href="#">Downtown</a>
+    <a class="dropdown-item" id='hollywood' href="#">Hollywood</a>
+    <a class="dropdown-item" id='westwood' href="#">Westwood</a>
+    <a class="dropdown-item" id='venice' href="#">Venice</a>
+
+  </div>
+</div> -->
+    <!-- <div class="btn-group">
+        <button type="button" class="btn btn-outline-primary" id='dt'>Downtown</button>
+        <button type="button" class="btn btn-outline-primary" id='hw'>Hollywood</button>
+        <button type="button" class="btn btn-outline-primary" id='ww'>Westwood</button>
+        <button type="button" class="btn btn-outline-primary" id='vb'>Venice</button>
+    </div> -->
     <div id="map"></div>
     <div id="attributions">Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     <div>Favicon courtesy of <a href="https://www.freepik.com/?__hstc=57440181.4dd29db7c87c42d31c27400de4899a09.1557383355244.1557383355244.1557387591918.2&__hssc=57440181.1.1557387591918&__hsfp=4203982898" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

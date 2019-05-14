@@ -1,7 +1,3 @@
-#attributions {
-
-}
-
 body {
   padding: 0;
   margin: 0;
@@ -14,7 +10,31 @@ html {
   width: 100vw;
 }
 
+.btn-outline-primary {
+    color: #ff5e00;
+    border-color: #ff5e0085;
+    margin: 5px;
+}
 
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #ff8100;
+    border-color: #f8f9fa;
+}
+
+.btn-outline-primary.focus, .btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show > .btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: 	#ff9933;
+}
+
+
+#vb {
+    margin-right: 20px;
+}
 /* css to customize Leaflet default styles  */
 .popupCustom .leaflet-popup-tip,
 .popupCustom .leaflet-popup-content-wrapper {
