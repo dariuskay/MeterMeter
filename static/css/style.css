@@ -13,3 +13,11 @@ html {
   height: 97%;
   width: 100vw;
 }
+
+
+/* css to customize Leaflet default styles  */
+.popupCustom .leaflet-popup-tip,
+.popupCustom .leaflet-popup-content-wrapper {
+    background: #ffb3b3;
+    color:#660000;
+}

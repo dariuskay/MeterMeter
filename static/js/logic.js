@@ -25,10 +25,34 @@ var vacantIcon = L.icon({
     popupAnchor: [-7, -26]
 });
 
+var customOptions = {
+    'maxWidth': '400',
+    'width': '200',
+    'className': 'popupCustom'
+};
+
+// function chooseMarker(d) {
+//     if d.occupancystate === "OCCUPIED" {
+//         return L.marker({
+//     'maxWidth': '400',
+//     'width': '200',
+//     'className' : 'popupCustom'
+//     }, [latitude, longitude], { icon: occupiedIcon : vacantIcon })
+//             .bindPopup(`<b>Address:</b> ${response[i].BlockFace} <br> 
+//                 <b>Policy:</b> ${response[i].ParkingPolicy} <br> 
+//                 <b>Rate:</b> ${response[i].RateRange} <br>
+//                 <a href="${appleURL}" target="_blank"><b>Open in Maps</b></a>`)
+//     } else {
+//         return L.marker([latitude, longitude], { icon: occupiedIcon : occupiedIcon })
+//             .bindPopup(`<b>Address:</b> ${response[i].BlockFace} <br> 
+//                 <b>Policy:</b> ${response[i].ParkingPolicy} <br> 
+//                 <b>Rate:</b> ${response[i].RateRange} <br>
+//                 <a href="${appleURL}" target="_blank"><b>Open in Maps</b></a>`)
+//     }
+// }
+
 // Grab the data with d3
 d3.json('/data', function(response) {
-
-    console.log(response)
 
     // Create a new marker cluster group
     var markers = L.markerClusterGroup(
@@ -66,11 +90,18 @@ d3.json('/data', function(response) {
 
         var appleURL = `http://maps.apple.com/?q=${latitude},${longitude}`
 
-        var new_marker = L.marker([latitude, longitude], { icon: (response[i].occupancystate == "OCCUPIED" ? occupiedIcon : vacantIcon) })
-            .bindPopup(`${response[i].BlockFace} <br> 
-                ${response[i].ParkingPolicy} <br> 
-                ${response[i].RateRange} <br>
-                <a href="${appleURL}" target="_blank">Open in Maps</a>`)
+        var popupText = `<b>Address:</b> ${response[i].BlockFace} <br> 
+                <b>Policy:</b> ${response[i].ParkingPolicy} <br> 
+                <b>Rate:</b> ${response[i].RateRange} <br>
+                <a href="${appleURL}" target="_blank"><b>Open in Maps</b></a>`;
+
+        var new_marker = L.marker([latitude, longitude], { icon: (response[i].occupancystate == "OCCUPIED" ? occupiedIcon : vacantIcon) });
+
+        if (response[i].occupancystate === "OCCUPIED") {
+            new_marker.bindPopup(popupText, customOptions)
+        } else {
+            new_marker.bindPopup(popupText)
+        }
 
         new_marker.lat = latitude;
         new_marker.lon = longitude;
