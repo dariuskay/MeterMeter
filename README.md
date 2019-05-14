@@ -1,5 +1,5 @@
 # MeterMeter
-A Leaflet map of Los Angeles parking meters and their availability.
+A Leaflet map of Los Angeles parking meters and their availability. The application is currently deployed [via Heroku](<http://metermeter.herokuapp.com/>).
 
 ![Example](Screengrab.png)
 
