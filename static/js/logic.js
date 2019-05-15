@@ -94,19 +94,22 @@ d3.json('/data', function(response) {
 
 })
 
-var home = document.getElementById('navbar-brand');
+var home = d3.select('clickme navbar-brand');
+
+console.log(home.html());
+
 var downtown = document.getElementById('dt');
 var hollywood = document.getElementById('hw');
 var westwood = document.getElementById('ww');
 var venice = document.getElementById('vb');
 
 downtown.addEventListener('click', function(event) {
-    myMap.flyTo([34.05129606451308, -118.25138691378726],15)
+    myMap.flyTo([34.05129606451308, -118.25138691378726], 15)
 });
 
 hollywood.addEventListener('click', function(event) {
 
-    myMap.flyTo([34.099, -118.336],16)
+    myMap.flyTo([34.099, -118.336], 16)
 });
 
 westwood.addEventListener('click', function(event) {
@@ -116,8 +119,9 @@ westwood.addEventListener('click', function(event) {
 });
 venice.addEventListener('click', function(event) {
 
-    myMap.flyTo([33.986778, -118.472992],17)
+    myMap.flyTo([33.986778, -118.472992], 17)
 });
-home.addEventListener('click', function(event) {
-    myMap.flyTo([34.05129606451308, -118.35138691378726],12)
+home.on('click', function(event) {
+    console.log("Click");
+    myMap.flyTo([34.05129606451308, -118.35138691378726], 12)
 });
