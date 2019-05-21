@@ -1,0 +1,2 @@
+- The clusters are divided into layers, but there's no difference between them visually on the page.
+

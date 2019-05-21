@@ -31,29 +31,54 @@ var customOptions = {
     'className': 'popupCustom'
 };
 
+var layers = {
+  Vacant: new L.LayerGroup(),
+  Occupied: new L.LayerGroup()
+};
+
+var overlays = {
+    'Unpaid Meters': layers.Vacant,
+    'Occupied Meters': layers.Occupied
+}
+
+function categorize(integer){
+    if (integer > 100) {
+        return "large"
+    } else if (integer > 15) {
+        return "medium"
+    } else {
+        return "small"
+    }
+}
+
+
+
+// Create a control for our layers, add our overlay layers to it
+L.control.layers(null, overlays).addTo(myMap);
+
+// Create a legend to display information about our map
+var info = L.control({
+  position: "bottomright"
+});
+
 
 d3.json('/data', function(response) {
 
     // Create a new marker cluster group
-    var markers = L.markerClusterGroup(
-        //   spiderfyShapePositions: function(count, centerPt) {
-        //     var distanceFromCenter = 35,
-        //         markerDistance = 45,
-        //         lineLength = markerDistance * (count - 1),
-        //         lineStart = centerPt.y - lineLength / 2,
-        //         res = [],
-        //         i;
-
-        //     res.length = count;
-
-        //     for (i = count - 1; i >= 0; i--) {
-        //         res[i] = new Point(centerPt.x + distanceFromCenter, lineStart + markerDistance * i);
-        //     }
-
-        //     return res;
-        // }
-        { disableClusteringAtZoom: 18 }
-    );
+    var markers = L.markerClusterGroup({
+            iconCreateFunction: function (cluster) {
+                var markers = cluster.getAllChildMarkers();
+                return L.divIcon({ html: markers.length, className: `occupied${categorize(markers.length)}`, iconSize: L.point(30, 30) });
+            },
+            disableClusteringAtZoom: 18
+        });
+    var vacantmarkers = L.markerClusterGroup({
+            iconCreateFunction: function (cluster) {
+                var markers = cluster.getAllChildMarkers();
+                return L.divIcon({ html: markers.length, className: `vacant${categorize(markers.length)}`, iconSize: L.point(30, 30) });
+            },
+            disableClusteringAtZoom: 18
+        });
 
     for (var i = 0; i < response.length; i++) {
 
@@ -71,18 +96,22 @@ d3.json('/data', function(response) {
         var new_marker = L.marker([latitude, longitude], { icon: (response[i].occupancystate == "OCCUPIED" ? occupiedIcon : vacantIcon) });
 
         if (response[i].occupancystate === "OCCUPIED") {
+            markers.addLayer(new_marker);
+
+            // new_marker.addTo(layers['Occupied'])
             new_marker.bindPopup(popupText, customOptions)
         } else {
+            vacantmarkers.addLayer(new_marker)
+            // new_marker.addTo(layers['Vacant'])
             new_marker.bindPopup(popupText)
         }
 
         new_marker.lat = latitude;
         new_marker.lon = longitude;
-        // new_marker.on('click', clicked);
-
-        markers.addLayer(new_marker);
-
     }
+
+    markers.addTo(layers['Occupied']);
+    vacantmarkers.addTo(layers['Vacant']);
 
     // Zoom to the bounds of a cluster
     markers.on('clusterclick', function(a) {
@@ -90,13 +119,12 @@ d3.json('/data', function(response) {
     });
 
     // Add our marker cluster layer to the map
+    myMap.addLayer(vacantmarkers);
     myMap.addLayer(markers);
 
 })
 
 var home = d3.select('clickme navbar-brand');
-
-console.log(home.html());
 
 var downtown = document.getElementById('dt');
 var hollywood = document.getElementById('hw');

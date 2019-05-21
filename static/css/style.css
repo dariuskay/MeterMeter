@@ -4,7 +4,7 @@ body {
 }
 
 #attributions {
-	background-color: #343a40;
+    background-color: #343a40;
     color: #fff;
 }
 
@@ -49,4 +49,80 @@ html {
 .popupCustom .leaflet-popup-content-wrapper {
     background: #ffb3b3;
     color: #660000;
+}
+
+.vacantlarge {
+    background-color: #C26B3E;
+        color: #ffffff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.vacantmedium {
+    background-color: #C26B3E;
+        color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+.vacantsmall {
+    background-color: #C26B3E;
+        color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+.occupiedlarge {
+    background-color: #B04A46;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.occupiedmedium {
+    background-color: #B04A46;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+.occupiedsmall {
+    background-color: #B04A46;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+.occupied .marker-cluster-large {
+    background-color: rgba(153, 51, 51, 0.6);
+}
+
+.occupied .marker-cluster-medium {
+    background-color: rgba(204, 0, 0, 0.6);
+}
+
+.occupied .marker-cluster-small {
+    background-color: rgb(255, 80, 80, 0.6);
 }
